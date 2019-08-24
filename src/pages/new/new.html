@@ -1,0 +1,41 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{user.company.name}} / {{user.gare.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-label color="dark">Date</ion-label>
+      <ion-datetime [(ngModel)]="date" displayFormat="DD/MM/YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label color="dark">Heure</ion-label>
+      <ion-datetime [(ngModel)]="heure" displayFormat="HH:mm"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label color="dark">Arrivée</ion-label>
+      <ion-select [(ngModel)]="arrive" (ionChange)="GetReservation(arrive)">
+        <ion-option *ngFor="let gare of garesCompagny" [value]="gare.name" >{{gare.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>
+      Reservations
+    </ion-list-header>
+    <ion-item *ngFor="let r of tabReservations">
+      <h2>{{r.numero}} {{r.username}}</h2>
+      <p>{{r.ligne.prix}} F CFA</p>
+      <button ion-button item-end (click)="payer(r)">payer</button>
+    </ion-item>
+  </ion-list>
+  <ion-item *ngIf="imprimer && tabReservations.length > 0" no-lines>
+    <button ion-button item-end round outline icon-start>
+      <ion-icon name="cloud-download"></ion-icon>
+      Imprimer</button>
+  </ion-item>
+</ion-content>

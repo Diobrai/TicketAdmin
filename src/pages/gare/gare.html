@@ -1,0 +1,37 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Gares</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="user">
+  <h1 style="text-align: center">Gares {{user.company.name}}</h1>
+
+  <ion-list>
+
+    <ion-item-sliding *ngFor="let g of garesList">
+      <ion-item detail-push>
+        <h2>{{g.name}}</h2>
+        <p *ngIf="g.adresse">{{g.adresse}}</p>
+        <p *ngIf="!g.adresse">Sougouba</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="primary" (click)="Modifier(g)" icon-start>
+          <ion-icon name="ios-create-outline" style="font-size: 200%!important;"></ion-icon>
+          Modifier
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right" >
+        <button ion-button color="danger" (click)="Supprimer(g)" icon-start>
+          <ion-icon name="md-trash" style="font-size: 200%!important;"></ion-icon>
+          Supprimer
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <p style="text-align: center; background: #f1f1f1; border-radius: 5%!important;">4</p>
+  <ion-fab right bottom (click)="OpenForm()">
+    <button ion-fab color="danger"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

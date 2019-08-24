@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content *ngIf="user">
+  <ion-card>
+    <ion-card-header>
+      <h1 style="text-align: center!important;color: #4aa1f3">Informations Personnelle</h1>
+    </ion-card-header>
+    <ion-item-group *ngIf="!edit">
+        <ion-item icon-start style="margin-bottom: 5px!important;">
+          <ion-icon name="md-person" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+          {{user.username}}
+        </ion-item>
+      <ion-item icon-start><ion-icon name="ios-key" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+          {{user.password}}</ion-item>
+      <ion-item icon-start><ion-icon name="ios-call-outline" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+      +223 64 84 55 89</ion-item>
+      <ion-item>
+        <button ion-button (click)="go()"  color="danger" item-end>
+          Modifier
+        </button>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group *ngIf="edit">
+      <ion-item icon-start style="margin-bottom: 5px!important;">
+        <ion-icon name="md-person" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+        <ion-input type="text" [(ngModel)]="user.username"></ion-input>
+      </ion-item>
+      <ion-item icon-start><ion-icon name="ios-key" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+        <ion-input type="text" [(ngModel)]="user.password"></ion-input></ion-item>
+      <ion-item icon-start><ion-icon name="ios-call-outline" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+        +223 64 84 55 89</ion-item>
+      <ion-item>
+        <button ion-button (click)="Modifier()"  item-end text-capitalize>
+          Modifier
+        </button>
+        <button ion-button (click)="go()" color="danger"  item-start text-capitalize>
+          Annuler
+        </button>
+      </ion-item>
+    </ion-item-group>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <h1 style="text-align: center!important;color: #4aa1f3">Informations Compagnie</h1>
+    </ion-card-header>
+      <ion-item icon-start style="margin-bottom: 5px!important;">
+        <ion-icon name="ios-home-outline" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+        {{user.company.name}}
+      </ion-item>
+      <ion-item icon-start><ion-icon name="ios-bus-outline" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+        {{user.gare.name}}</ion-item>
+      <ion-item icon-start><ion-icon name="ios-call-outline" style="margin-top: 5px!important; margin-right: 5px!important;" item-start></ion-icon>
+        +223 64 84 55 89</ion-item>
+      <ion-item>
+        <button ion-button   color="primary" item-end>
+          Modifier
+        </button>
+      </ion-item>
+  </ion-card>
+  <button ion-item detail-push>
+    <ion-icon name="md-done-all" item-start color="primary"></ion-icon>
+    Gares
+    <p item-end>9</p>
+  </button>
+  <button ion-item detail-push>
+    <ion-icon name="md-done-all" item-start color="secondary"></ion-icon>
+    Lignes
+    <p item-end>81</p>
+  </button>
+
+</ion-content>

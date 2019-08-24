@@ -1,5 +1,7 @@
 {
   "name": "TicketAdmin",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }

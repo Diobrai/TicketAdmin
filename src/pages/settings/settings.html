@@ -1,0 +1,36 @@
+<ion-content class="content">
+  <ion-list>
+      <ion-list-header>
+        <h2>Settings</h2>
+      </ion-list-header>
+      <button ion-item detail-push icon-start (click)="GoToAdminPage()">
+        <ion-icon name="contact" item-start color="primary" ></ion-icon>
+        Profile
+      </button>
+      <button ion-item detail-push icon-start (click)="GoToGarePage()">
+        <ion-icon name="bus" item-start color="secondary"  ></ion-icon>
+        Gares
+      </button>
+    <button ion-item detail-push icon-start (click)="GoToLignePage()" >
+      <ion-icon name="planet" item-start ></ion-icon>
+      Lignes
+    </button>
+    <button ion-item detail-push icon-start (click)="GoToStatistiquePage()">
+      <ion-icon name="stats" item-start color="danger"></ion-icon>
+      Statistiques
+    </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item detail-push icon-start>
+      <ion-icon name="information-circle" item-start ></ion-icon>
+        A propos
+    </button>
+    <button ion-item detail-push icon-start>
+      <ion-icon name="call" item-start ></ion-icon>
+      Contactez-nous
+    </button>
+  </ion-list>
+
+
+
+</ion-content>
