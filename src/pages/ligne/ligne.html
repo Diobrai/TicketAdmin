@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-navbar>
+<ion-header >
+  <ion-navbar color="primary">
     <ion-title>Ligne</ion-title>
   </ion-navbar>
 </ion-header>
@@ -41,7 +41,7 @@
            <ion-label>
              à
            </ion-label>
-           <ion-select interface="action-sheet" title="Jours" [(ngModel)]="arrive"  cancelText="Annuler" okText="d'accord" [selectOptions]="selectOptions">
+           <ion-select interface="action-sheet" title="arrivée" [(ngModel)]="arrive"  cancelText="Annuler" okText="d'accord" [selectOptions]="selectOptions">
              <ion-option *ngFor="let g of garesList" value="{{g.name}}">{{g.name}}</ion-option>
            </ion-select>
          </ion-item>
@@ -67,8 +67,15 @@
   <ion-list>
     <ion-card *ngFor="let l of lignes">
       <ion-card-content>
-        <h5>{{l.depart}}</h5>
-        <h5 item-start>{{l.arrive}}</h5>
+       <ion-item>
+         <h5 item-start>{{l.depart}}</h5>
+         <h5>{{l.arrive}}</h5>
+         <h4 item-end>
+           {{l.heure}}
+           <p >{{l.prix}} F CFA</p>
+         </h4>
+
+       </ion-item>
       </ion-card-content>
     </ion-card>
   </ion-list>

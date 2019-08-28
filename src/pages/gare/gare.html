@@ -1,6 +1,6 @@
 
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Gares</ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,7 +10,7 @@
 
   <ion-list>
 
-    <ion-item-sliding *ngFor="let g of garesList">
+    <ion-item-sliding *ngFor="let g of garesList" class="testBack">
       <ion-item detail-push>
         <h2>{{g.name}}</h2>
         <p *ngIf="g.adresse">{{g.adresse}}</p>

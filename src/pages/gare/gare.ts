@@ -51,7 +51,12 @@ export class GarePage {
           text: 'Ajouter',
           handler:data=>{
             let gare=data;
-            this.garesList.push({name:gare.name,adresse:gare.adresse})
+            if(gare.name.length>0 && gare.adresse.length>0){
+              this.garesList.push({name:gare.name,adresse:gare.adresse})
+            }else {
+              return
+            }
+
           }
         }]
     });

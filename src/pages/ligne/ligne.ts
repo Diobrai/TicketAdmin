@@ -30,9 +30,10 @@ export class LignePage {
   jours: any=[];
   price: any;
   lines:Ligne;
-  line:Ligne;
+  //line:Ligne;
   lignes=[];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private alertCtrl:AlertController ) {
     this.gares=new Gare();
     this.selectOptions = {
       title: 'Jours',
@@ -51,7 +52,6 @@ export class LignePage {
     M.locale('fr');
     this.GetUser();
     this.lines=new Ligne();
-    this.line=new Ligne();
     let garesdb=this.gares.AllGare();
     this.lignes=this.lines.GetLigneByCompany(this.user.company.name);
     this.garesList=garesdb.filter(r=>r.company==this.user.company.name && r.name!=this.user.gare.name);
@@ -63,18 +63,21 @@ export class LignePage {
 
   AddLine() {
     console.log(this.heure, this.arrive, this.jours);
-    if(this.jours.length>0 && this.jours.indexOf('all')==-1){
+    if(this.jours.length>0){
       let joursdb=this.jours.toString();
-      this.line.arrive=this.arrive;
-      this.line.depart=this.user.gare.name;
-      this.line.prix=this.price;
-      this.line.company=this.user.company.name;
-      this.line.heure=this.heure;
-      this.line.jours=joursdb;
-      this.lines.AddList(this.line);
-      this.lignes=this.lines.GetLigneByCompany(this.user.company.name);
-      console.log(this.lines.Db())
-
+      let line=new Ligne();
+      line.arrive=this.arrive;
+      line.depart=this.user.gare.name;
+      line.prix=this.price;
+      line.company=this.user.company.name;
+      line.heure=this.heure;
+      line.jours=joursdb;
+      this.lignes.push(line);
+    }else {
+      this.alertCtrl.create({
+        title:"Info",
+        subTitle:'Vous devez remplire tous les champs!!'
+      }).present()
     }
 
 
