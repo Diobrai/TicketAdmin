@@ -3,6 +3,7 @@ export class Gare {
   company:string;
   adresse:string;
   constructor(){}
+
   AllGare(){
     return [
       {

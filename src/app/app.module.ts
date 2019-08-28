@@ -5,6 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import {ShrinkingSegmentHeaderComponent} from "../components/shrinking-segment-header/shrinking-segment-header";
+
+
 
 
 @NgModule({
@@ -16,7 +20,10 @@ import { MyApp } from './app.component';
     BrowserModule,
     IonicModule.forRoot(MyApp,{
       backButtonText: 'Retour',
-    })
+    }),
+    Ng2GoogleChartsModule
+
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -26,7 +33,11 @@ import { MyApp } from './app.component';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+
+
+
+
   ]
 })
 export class AppModule {}

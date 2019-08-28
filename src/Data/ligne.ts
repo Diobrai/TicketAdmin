@@ -1,3 +1,4 @@
+import {Gare} from "./Gare";
 
 export class Ligne {
        company:string;
@@ -6,9 +7,10 @@ export class Ligne {
        arrive:string;
        depart:string;
        heure:string;
-       allLigne=[];
+       jours:string;
+       static allLigne=[];
        constructor(){
-         this.allLigne=[
+         Ligne.allLigne=[
            {
              date:'18/08/2019',
              heure:'12h30',
@@ -62,10 +64,15 @@ export class Ligne {
 
          ]
        }
-
-       GetLigneByCompany(name,date){
-         return this.allLigne.filter((val)=>
-         val.company==name && val.date==date)
+       Db(){
+         return Ligne.allLigne;
+       }
+       AddList(ligne:Ligne){
+         Ligne.allLigne.push(ligne);
+       }
+       GetLigneByCompany(name,date?){
+         return Ligne.allLigne.filter((val)=>
+         val.company==name)
        }
 
 

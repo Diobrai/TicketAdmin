@@ -50,11 +50,11 @@ export class GarePage {
         {
           text: 'Ajouter',
           handler:data=>{
-            console.log(data)
-
+            let gare=data;
+            this.garesList.push({name:gare.name,adresse:gare.adresse})
           }
         }]
-    })
+    });
 
     alt.present().then(data=>{console.log('work')})
 
