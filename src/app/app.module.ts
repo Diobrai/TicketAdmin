@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import {DatePicker} from '@ionic-native/date-picker'
 import { MyApp } from './app.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 import {ShrinkingSegmentHeaderComponent} from "../components/shrinking-segment-header/shrinking-segment-header";
@@ -21,7 +21,9 @@ import {ShrinkingSegmentHeaderComponent} from "../components/shrinking-segment-h
     IonicModule.forRoot(MyApp,{
       backButtonText: 'Retour',
     }),
-    Ng2GoogleChartsModule
+    Ng2GoogleChartsModule,
+
+
 
 
   ],
@@ -33,6 +35,7 @@ import {ShrinkingSegmentHeaderComponent} from "../components/shrinking-segment-h
   providers: [
     StatusBar,
     SplashScreen,
+    DatePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
 
 

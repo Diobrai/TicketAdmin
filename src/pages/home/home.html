@@ -1,14 +1,25 @@
 <ion-content>
     <div  class="center">
-      <p class="Title">Bienvenue</p>
+      <p class="Title">Mali-Ticket</p>
       <div style="margin: 10%!important;">
         <button ion-button block   class="recerveBtn"  color="light" (click)="showPrompt()" icon-start>
           <ion-icon  name="log-in" ></ion-icon>
           Connectez Vous
         </button>
-        <button ion-button block  style="color: white" clear (click)="GoToRegisterPage()"  >
-          Creez Un compte
+        <button ion-button block  style="color: white" clear (click)="showpicker()"  >
+          Creer Un compte
         </button>
       </div>
     </div>
-</ion-content>
+  <h1>Date & Time Pickers</h1>
+
+  <button ion-button (click)="showDatepicker()">
+    Show Date Picker
+  </button>
+  <h4>Date: {{myDate}}</h4>
+
+
+</ion-content >
+<ion-footer no-lines>
+  <p style="text-align: center!important; font-family: 'Rage Italic';font-size: 20px">La solution a vos Voyages</p>
+</ion-footer>

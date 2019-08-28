@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {UserData} from "../../Data/userData";
+import { DatePicker } from '@ionic-native/date-picker';
 
 
 
@@ -11,10 +12,15 @@ import {UserData} from "../../Data/userData";
 })
 export class HomePage {
   userData:UserData;
+  myDate:string;
+  myTime:string;
+  myDateNTime:string;
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private alertCtrl: AlertController,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              private datePicker: DatePicker) {
     this.userData=new UserData();
+
 
   }
 
@@ -110,5 +116,36 @@ export class HomePage {
     prompt.present().then(()=>{
       console.log('it works')
     });
+  }
+  showpicker(){
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => console.log('Got date: ', date),
+      err => console.log('Error occurred while getting date: ', err)
+    );
+  }
+  showDatepicker(){
+    let opti={
+      date: new Date(),
+      mode: 'date',
+      androidTheme: 0,
+      allowOldDates: true,
+      allowFutureDates: false,
+      doneButtonLabel: 'DONE',
+      doneButtonColor: '#F2F3F4',
+      cancelButtonLabel: 'CANCEL',
+      cancelButtonColor: '#000000',
+      locale:'Fr',
+
+    }
+    this.datePicker.show(opti).then(
+      date => {
+        this.myDate = date.getDate()+"/"+date.toLocaleString('fr', { month: 'long' })+"/"+date.getFullYear();
+      },
+      err => console.log('Error occurred while getting date: ', err)
+    );
   }
 }
