@@ -1,6 +1,6 @@
 
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="tabsP">
     <ion-title>{{user.company.name}} / {{user.gare.name}}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,11 +9,11 @@
   <ion-card>
     <ion-item>
       <ion-label color="dark">Date</ion-label>
-      <ion-datetime [(ngModel)]="date" displayFormat="DD/MM/YYYY"></ion-datetime>
+      <button ion-button (click)="showPicker()" color="primary" item-end>{{date}}</button>
     </ion-item>
     <ion-item>
       <ion-label color="dark">Heure</ion-label>
-      <ion-datetime [(ngModel)]="heure" displayFormat="HH:mm"></ion-datetime>
+      <button ion-button (click)="showTimePicker()" color="primary" item-end>{{heure}}</button>
     </ion-item>
     <ion-item>
       <ion-label color="dark">Arrivée</ion-label>

@@ -127,25 +127,5 @@ export class HomePage {
       err => console.log('Error occurred while getting date: ', err)
     );
   }
-  showDatepicker(){
-    let opti={
-      date: new Date(),
-      mode: 'date',
-      androidTheme: 0,
-      allowOldDates: true,
-      allowFutureDates: false,
-      doneButtonLabel: 'DONE',
-      doneButtonColor: '#F2F3F4',
-      cancelButtonLabel: 'CANCEL',
-      cancelButtonColor: '#000000',
-      locale:'Fr',
 
-    }
-    this.datePicker.show(opti).then(
-      date => {
-        this.myDate = date.getDate()+"/"+date.toLocaleString('fr', { month: 'long' })+"/"+date.getFullYear();
-      },
-      err => console.log('Error occurred while getting date: ', err)
-    );
-  }
 }

@@ -1,17 +1,16 @@
-import {Component, ElementRef, Input, Renderer, ViewChild} from '@angular/core';
+import {Component,} from '@angular/core';
 import {
-  ActionSheetController,
-  AlertController, Content,
+  AlertController,
   IonicPage,
   NavController,
-  NavParams, Platform,
-  PopoverController, ScrollEvent
+  NavParams,
 } from 'ionic-angular';
 import {Gare} from "../../Data/Gare";
 import {User} from "../../Data/user";
 import {Company} from "../../Data/company";
 import * as M from 'moment'
 import {Ligne} from "../../Data/ligne";
+import {GeneralProvider} from "../../providers/general/general";
 
 
 @IonicPage()
@@ -25,7 +24,7 @@ export class LignePage {
   garesList=[];
   selectOptions;
   pieChartData;
-  heure: any;
+  heure:any;
   arrive: any;
   jours: any=[];
   price: any;
@@ -33,7 +32,7 @@ export class LignePage {
   //line:Ligne;
   lignes=[];
   constructor(public navCtrl: NavController, public navParams: NavParams,
-              private alertCtrl:AlertController ) {
+              private alertCtrl:AlertController,private generalProvider: GeneralProvider ) {
     this.gares=new Gare();
     this.selectOptions = {
       title: 'Jours',
@@ -49,6 +48,8 @@ export class LignePage {
     }
 
   ionViewDidLoad() {
+    let date=new Date();
+    this.heure=date.getHours()+'h'+date.getMinutes();
     M.locale('fr');
     this.GetUser();
     this.lines=new Ligne();
@@ -91,6 +92,19 @@ export class LignePage {
     g.name=usertab[1];
     c.name=usertab[0];
     this.user=new User(usertab[2],c,'1234',g);
+  }
+
+  showPicker(){
+    let date=new Date();
+    let time=this.heure.split('h');
+    date.setHours(parseInt(time[0]),parseInt(time[1]));
+    //console.log(date)
+    this.generalProvider.DatePicker('time',date).then(date=>{
+      this.heure=date.getHours()+'h'+date.getMinutes();
+      this.alertCtrl.create({
+        title:date.toDateString(),
+      }).present();
+    }).catch(err=>console.log(err))
   }
 
 

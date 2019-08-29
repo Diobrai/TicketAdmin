@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import {User} from "../../Data/user";
 import {ReservationsList} from "../../Data/reservationsList";
 import {Gare} from "../../Data/Gare";
 import {Company} from "../../Data/company";
+import {DatePipe} from "@angular/common";
+import {GeneralProvider} from "../../providers/general/general";
+
 
 /**
  * Generated class for the NewPage page.
@@ -21,14 +24,16 @@ export class NewPage {
   user:User;
   reservation:ReservationsList;
   reservationsArray=[];
-  date: string;
+  date: any=new Date();
   arrive: any;
   garesCompagny: any;
   gares:Gare;
   heure: string;
   tabReservations=[];
   imprimer:boolean=false;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public datepipe: DatePipe, private generalProvider:GeneralProvider,
+              ) {
     let userstock=localStorage.getItem('user');
     let usertab=userstock.split("&");
     let c=new Company();
@@ -40,9 +45,13 @@ export class NewPage {
     //this.user=this.navParams.data[0];
     this.reservation=new ReservationsList();
     this.gares=new Gare();
+    this.date=this.datepipe.transform(this.date,'dd/MM/yyyy');
+    console.log('date', this.date)
   }
 
   ionViewDidLoad() {
+    let date=new Date();
+    this.heure=date.getHours()+'h'+date.getMinutes();
     console.log('company', this.user.company.name);
     this.garesCompagny=this.gares.AllGare().filter(g=>g.company==this.user.company.name && g.name!=this.user.gare.name);
     console.log(this.garesCompagny);
@@ -51,18 +60,41 @@ export class NewPage {
 
   }
 
-  GetReservation(arrive: any) {console.log(this.date);
-    let date1=this.date.split('-');
-    let date2=date1[2]+'/'+date1[1]+'/'+date1[0];
-    let heure1=this.heure.replace(':','h');
-    console.log(date2, heure1);
+  GetReservation(arrive: any) {
     this.imprimer=true;
-    this.tabReservations=this.reservationsArray.filter(r=>r.ligne.arrive==arrive && r.ligne.date==date2 && r.ligne.heure==heure1);
+    this.tabReservations=this.reservationsArray.filter(r=>r.ligne.arrive==arrive && r.ligne.date==this.date && r.ligne.heure==this.heure);
 
   }
 
   payer(r: any) {
     r.paye=true;
     //this.GetReservation(this.arrive)
+  }
+  showPicker(){
+    let date=new Date();
+    let datatable=this.date.split('/');
+    date.setFullYear(datatable[2],datatable[1]-1,datatable [0]);
+    this.generalProvider.DatePicker('date',date).then(date=>{
+      //this.heure=date.getHours()+'h'+date.getMinutes();
+      if(date){
+        this.date=this.datepipe.transform(date,'dd/MM/yyyy');
+      }else {
+
+      }
+
+    }).catch(err=>console.log(err))
+  }
+
+  showTimePicker() {
+    let date=new Date();
+    let time=this.heure.split('h');
+    date.setHours(parseInt(time[0]),parseInt(time[1]));
+    //console.log(date)
+    this.generalProvider.DatePicker('time',date).then(date=>{
+      if(date){
+        this.heure=date.getHours()+'h'+date.getMinutes();
+      }
+    }).catch(err=>console.log(err))
+
   }
 }

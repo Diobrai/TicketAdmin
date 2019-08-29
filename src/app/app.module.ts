@@ -6,9 +6,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import {DatePicker} from '@ionic-native/date-picker'
 import { MyApp } from './app.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
-import {ShrinkingSegmentHeaderComponent} from "../components/shrinking-segment-header/shrinking-segment-header";
-
-
+import { GeneralProvider } from '../providers/general/general';
+import {DatePipe} from "@angular/common";
 
 
 @NgModule({
@@ -37,6 +36,8 @@ import {ShrinkingSegmentHeaderComponent} from "../components/shrinking-segment-h
     SplashScreen,
     DatePicker,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    GeneralProvider,
+    DatePipe
 
 
 

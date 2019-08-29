@@ -1,5 +1,5 @@
 <ion-header >
-  <ion-navbar color="primary">
+  <ion-navbar color="tabsP">
     <ion-title>Ligne</ion-title>
   </ion-navbar>
 </ion-header>
@@ -26,7 +26,7 @@
        </ion-col>
        <ion-col col-4>
          <ion-item>
-           <ion-datetime [(ngModel)]="heure"  displayFormat="HH:mm" placeholder="Heure"></ion-datetime>
+           <button ion-button (click)="showPicker()">{{heure}}</button>
          </ion-item>
        </ion-col>
      </ion-row>

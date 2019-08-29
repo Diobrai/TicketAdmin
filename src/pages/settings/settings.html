@@ -1,7 +1,7 @@
 <ion-content class="content">
   <ion-list>
       <ion-list-header>
-        <h2>Metiers</h2>
+        <h2 style="color: #000;font-size: 24px">Metiers</h2>
       </ion-list-header>
       <button ion-item detail-push icon-start (click)="GoToAdminPage()">
         <ion-icon name="contact" item-start color="primary" ></ion-icon>
@@ -28,6 +28,14 @@
     <button ion-item detail-push icon-start>
       <ion-icon name="call" item-start ></ion-icon>
       Contactez-nous
+    </button>
+    <button ion-item detail-push icon-start>
+      <ion-icon name="log-out" item-start ></ion-icon>
+      Deconnexion
+    </button>
+    <button ion-item detail-push icon-start>
+      <ion-icon name="md-trash" item-start color="danger" ></ion-icon>
+      Supprimer compte
     </button>
   </ion-list>
 </ion-content>
